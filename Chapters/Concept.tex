@@ -1,1 +1,78 @@
 \chapter{Concept}
+\label{chap:concept}
+
+\section{Introduction}
+% Recap of the research problem and objectives of this chapter.
+This chapter presents the conceptual design of an XR-based assistance system aimed at enhancing the safety and ergonomics of industrial workers. Building on the theoretical foundations outlined in Chapter \ref{chap:theoretical_background}, it details the system requirements, architectural framework, posture analysis and hazard detection concepts, feedback modalities, interaction design, and evaluation criteria. The goal is to provide a comprehensive blueprint that addresses the identified challenges while leveraging the capabilities of wearable technologies and XR environments. This conceptual framework serves as a foundation for the subsequent implementation and evaluation phases of the project.
+
+\section{System Requirements and Constraints}
+
+\subsection{Functional Requirements}
+-Real-time posture monitoring
+-Hazard detection in XR environment
+-Haptic and visual feedback for unsafe postures and hazards
+-Data logging for ergonomic assessment
+-User-friendly interface for workers
+-Integration with existing industrial systems (GAIA)
+
+\subsection{Non-functional Requirements}
+-Latency 
+-Intrusiveness
+-Reliability
+-Usability
+\subsection{Hardware and Software Constraints}
+-control center only runs on windows so component running windows is required for the teslasuit
+-teslasuit not that precise and cant detect whether body part rested on something or not
+
+\section{Framework Architecture}
+-due to the software limitations the Framework is distributed between the Meta Quest 3 and a windows PC which will handle the data and most of the computation
+\subsection{Hardware Components}
+-Meta Quest 3
+-Teslasuit
+-Windows PC
+-GAIA system
+-potential addtional sensors (smart watch etc)
+\subsection{Data Flow and Integration via LSL}
+\subsection{Communication Protocols}
+
+\section{Posture Analysis Concept}
+-Real-time joint angle data acquisition from Teslasuit
+-Ergonomic assessment using RULA
+\subsection{Joint Angle Data Acquisition}
+\subsection{Ergonomic Assessment Model}
+\subsection{Mapping to Ergonomic Risk Levels}
+
+\section{Hazard Detection Concept}
+-Using XR environment to define and visualize danger zones
+-Integration of real-world data for dynamic hazard detection
+\subsection{Spatial Alignment of XR and Real-World Coordinates}
+-
+\subsection{Definition of Danger Zones}
+\subsection{Sensor and XR Data Fusion}
+
+\section{Feedback Modalities}
+\subsection{Haptic Feedback}
+\subsection{Visual Feedback}
+\subsection{Rationale for Feedback Choice}
+
+\section{Interaction Design}
+-Aside from setup and calibration the system should require minimal interaction from the worker
+-The system should provide clear and concise feedback without overwhelming the worker
+- The system should be non-intrusive when no hazards or poor posture is detected
+\subsection{Worker Interaction with the System}
+
+\subsection{Avoiding Information Overload}
+-Prioritization of Alerts
+-Haptic vs Visual Feedback
+-low intensity haptic feedback for posture correction
+-stronger haptic feedback for hazard alerts
+-visual feedback for immediate/ dangerous hazard alerts
+\subsection{Safety-Critical Design Considerations}
+
+
+\section{Conceptual Evaluation Criteria}
+\subsection{Relation to Research Questions}
+\subsection{Success Criteria for the Concept}
+
+\section{Summary and Transition}
+% Recap of the conceptual design and transition to Implementation.
