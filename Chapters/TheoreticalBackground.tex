@@ -55,14 +55,61 @@ MSDs are the largest category of work related illnesses the united states, nordi
 Some of the features frequently cited as risk factors for MSDs are repetitive motion, high pace of work and non-neutral postures \cite{punnett2004wrmsd}; these are all features that can be found in modern industrial environments. Highlighting both the economic and human cost of MSDs, as well as the relevance of the problem in modern industrial environments.
 
 \subsection{Need for Real-Time Monitoring}
+%ChatGPT generated text, needs to be checked
+Traditional ergonomic assessments, such as RULA or REBA, are typically applied asone-time observational surveys during workplace evaluations. While these methodshave proven valuable for identifying high-risk tasks, workers’ postures, physical loads, and environmental conditions fluctuate dynamically during a shift. A snapshot analysis cannot capture the variation of these factors, leading to potential underestimation of risk exposure.
+
+%check sources
+Recent advances in wearable sensing and extended reality systems make it feasible to move beyond periodic ergonomic audits towards continuous, real-time monitoring. Wearable inertial measurement units, haptic suits, and vision-based tracking can provide ongoing streams of biomechanical data, enabling posture recognition and ergonomic risk scoring on the fly \cite{syberfeldt2016vrar,portman2022xrsurvey}. When integrated into XR environments, such systems allow adaptive feedback that alerts workers before musculoskeletal strain develops or before entering hazardous areas.
+
+Real-time monitoring therefore represents a paradigm shift: from retrospective identification of risk to proactive prevention. By continuously processing physiological and spatial data with ergonomic models such as RULA and REBA, XR-based systems can provide immediate, context-sensitive feedback without interrupting workflow. This capability is particularly important in dynamic industrial settings where human workers operate in close proximity to machines and robots, and where static safety protocols are insufficient to ensure long-term health and safety.
 
 
 \section{Wearable Technologies for Assistance}
+%check sources for whole section
+Wearable technologies have gained increasing relevance in industrial contexts as tools
+for safety, monitoring, and human-machine interaction. By continuously capturing
+biometric, postural, or spatial data, they enable real-time assistance and adaptive
+feedback. This section highlights the most relevant classes of wearables for industrial
+safety systems, with a particular focus on the Teslasuit and the Meta Quest 3, which
+form the hardware basis of this framework.
+
 \subsection{Overview of Industrial Wearables}
+
+Industrial wearables span a broad spectrum of devices, including smartwatches,
+exoskeletons, head-mounted displays (HMDs), and full-body sensor systems.
+These devices are designed to augment workers’ capabilities by monitoring
+physiological signals, capturing motion, or overlaying digital information on the
+physical workspace. Applications include fatigue detection, posture monitoring,
+safety training, and real-time hazard warnings \cite{de2019industrialwearables,syberfeldt2016vrar}. 
+Wearables are increasingly integrated into industrial IoT infrastructures, allowing 
+their data streams to be combined with machine sensors and environmental data 
+for context-aware decision support \cite{portman2022xrsurvey}.
 
 \subsection{The Teslasuit}
 
+The Teslasuit is a full-body wearable that integrates motion capture, haptic feedback,
+and biometric sensing. Its motion capture system is based on inertial measurement
+units (IMUs), enabling tracking of joint angles and postures in real time. The haptic
+system uses electrostimulation and vibrotactile feedback to deliver localized cues to
+the body, which can be employed to warn workers about unsafe postures or proximity
+to hazardous zones \cite{teslasuitwhitepaper}. Additionally, the biometric module allows
+monitoring of heart rate, stress, and other physiological parameters, offering insights
+into fatigue and workload. While powerful, the Teslasuit is limited by the precision of
+its IMUs and cannot directly capture external load or arm support, which affects the
+granularity of ergonomic risk assessment.
+
 \subsection{The Meta Quest 3}
+
+The Meta Quest 3 is a commercially available mixed reality headset that provides
+inside-out tracking, hand tracking, and high-resolution stereoscopic displays.
+Its passthrough capabilities allow seamless blending of digital content into the
+real environment, making it suitable for industrial XR applications \cite{metaquest2023}. 
+In safety contexts, the headset can overlay warnings, display digital twins, and 
+visualize danger zones directly in the worker’s field of view. Compared to previous 
+generations, the Quest 3 offers improved spatial mapping and computational 
+performance, enabling low-latency integration with external data sources such 
+as wearables. This makes it an accessible and practical platform for deploying 
+industrial XR assistance systems.
 
 \section{Haptic Feedback and Multimodal Warning Systems}
 \subsection{Perception of Haptic Stimuli}
