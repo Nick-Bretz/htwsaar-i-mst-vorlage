@@ -6,9 +6,13 @@
 This chapter presents the conceptual design of an XR-based assistance system aimed at enhancing the safety and ergonomics of industrial workers. Building on the theoretical foundations outlined in Chapter \ref{chap:theoretical_background}, it details the system requirements, architectural framework, posture analysis and hazard detection concepts, feedback modalities, interaction design, and evaluation criteria. The goal is to provide a comprehensive blueprint that addresses the identified challenges while leveraging the capabilities of wearable technologies and XR environments. This conceptual framework serves as a foundation for the subsequent implementation and evaluation phases of the project.
 
 \section{System Requirements and Constraints}
+The XR-based assistance system's design is guided by a set of functional and non-functional requirements, as well as hardware and software constraints. These requirements ensure that the system effectively addresses the needs of industrial workers while adhering to practical limitations.
 
 \subsection{Functional Requirements}
+In order to give appropriate feedback on the users posture and the surrounding hazards the system needs to achieve a multitude of functional requirements. 
+Accurate real-time posture tracking is essential for effective application of ergonomic assessment models like RULA. Due to the Teslasuit's use of accelerometers the system also needs to be able to calibrate the sensors to minimize the effect of drift over time. In addition the system needs to correctly place the user in the XR environment and align the real-world coordinates with the XR coordinates. This is necessary to accurately assess the users proximity to hazard zones. For the system to be accesible to workers it also needs to provide a user-friendly interface which allows easy calibration and minimal interaction during tasks. The system also needs to be able to integrate with existing industrial systems like GAIA to leverage existing infrastructure and data. 
 -Real-time posture monitoring
+-Calibration (because of accelerometer drift)
 -Hazard detection in XR environment
 -Haptic and visual feedback for unsafe postures and hazards
 -Data logging for ergonomic assessment
@@ -23,6 +27,9 @@ This chapter presents the conceptual design of an XR-based assistance system aim
 \subsection{Hardware and Software Constraints}
 -control center only runs on windows so component running windows is required for the teslasuit
 -teslasuit not that precise and cant detect whether body part rested on something or not
+-battery life of wearables
+-xr headset comfort
+-stable wireless connection
 
 \section{Framework Architecture}
 -due to the software limitations the Framework is distributed between the Meta Quest 3 and a windows PC which will handle the data and most of the computation
@@ -33,33 +40,75 @@ This chapter presents the conceptual design of an XR-based assistance system aim
 -GAIA system
 -potential addtional sensors (smart watch etc)
 \subsection{Data Flow and Integration via LSL}
+-synchronization of data streams from Teslasuit and Meta Quest 3 
+-collection of motion and biometric data from Teslasuit
+-integration of tracking and XR scene information from Meta Quest 3
 \subsection{Communication Protocols}
+-LabStreamingLayer (LSL) for low-latency synchronization
+-MQTT for lightweight messaging with industrial systems
+-Unity native networking for communication between Meta Quest 3 and Windows PC
 
 \section{Posture Analysis Concept}
 -Real-time joint angle data acquisition from Teslasuit
 -Ergonomic assessment using RULA
 \subsection{Joint Angle Data Acquisition}
+-use of Teslasuit IMUs for limb and torso angle detection
+-continuous sampling at defined frequency
+-preprocessing: smoothing, filtering to reduce noise
+-mapping raw sensor data into ergonomic posture models
 \subsection{Ergonomic Assessment Model}
+-application of simplified RULA scoring
+-calculation of part scores (arms, wrists, neck, trunk, legs)
+-aggregation into overall ergonomic risk levels
+-real-time thresholding to trigger feedback events
 \subsection{Mapping to Ergonomic Risk Levels}
+-Low Risk: No action needed
+-Medium Risk: Subtle corrective feedback (haptic, visual)
+-High Risk: Strong alert to prompt immediate correction
+-Continuous logging for ergonomic analysis and training
 
 \section{Hazard Detection Concept}
 -Using XR environment to define and visualize danger zones
 -Integration of real-world data for dynamic hazard detection
 \subsection{Spatial Alignment of XR and Real-World Coordinates}
--
+- calibration procedure between Teslasuit and Quest 3 spaces
+- use of anchor points (markers or environment geometry)
+
 \subsection{Definition of Danger Zones}
+- virtual representation of hazardous areas in XR
+- dynamic adjustment based on real-world changes
+- individually placed danger zones for specific tasks
+- visual cues (color coding, flashing) for hazard zones
+- Multi-zone hierarchy (e.g., caution, danger, emergency)
+
 \subsection{Sensor and XR Data Fusion}
+- Combining Teslasuit motion data with XR positional tracking
+- Real-time monitoring of worker proximity to danger zones
+
 
 \section{Feedback Modalities}
 \subsection{Haptic Feedback}
+-local cues for posture correction
+-intensity scaling depending on urgency
+-spatial mapping of cues to body region
 \subsection{Visual Feedback}
+- XR overlays for hazard alerts
+- color-coded indicators for ergonomic status
+- minimalistic design to avoid clutter
+
 \subsection{Rationale for Feedback Choice}
+-Haptic cues reduce visual overload
+-Visual feedback leverages XR capabilities
+-Combination enhances situational awareness (SOURCE!!)
 
 \section{Interaction Design}
 -Aside from setup and calibration the system should require minimal interaction from the worker
 -The system should provide clear and concise feedback without overwhelming the worker
 - The system should be non-intrusive when no hazards or poor posture is detected
 \subsection{Worker Interaction with the System}
+-Calibration at start of shift
+-Minimal interaction during tasks
+-Option to acknowledge alerts
 
 \subsection{Avoiding Information Overload}
 -Prioritization of Alerts
@@ -67,12 +116,27 @@ This chapter presents the conceptual design of an XR-based assistance system aim
 -low intensity haptic feedback for posture correction
 -stronger haptic feedback for hazard alerts
 -visual feedback for immediate/ dangerous hazard alerts
+-adaptive alert frequency 
+-personalization of feedback intensity
+
 \subsection{Safety-Critical Design Considerations}
+-Alerts must not obstruct vision of critical tasks of Components
+-Defaults in case of sensor failure
+-avoid false positives to avoid alert fatigue
 
 
 \section{Conceptual Evaluation Criteria}
 \subsection{Relation to Research Questions}
+-Posture monitoring accuracy
+-Hazard detection reliability
+-Latency thresholds
+-Spatial alignment 
+
 \subsection{Success Criteria for the Concept}
+-Accurate posture detection (within 5 degrees)
+-Latency below 200ms
+-Integration with existing systems
+-Hazard zones correctly represented in XR
 
 \section{Summary and Transition}
 % Recap of the conceptual design and transition to Implementation.
