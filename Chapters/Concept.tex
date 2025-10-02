@@ -10,36 +10,28 @@ The XR-based assistance system's design is guided by a set of functional and non
 
 \subsection{Functional Requirements}
 In order to give appropriate feedback on the users posture and the surrounding hazards the system needs to achieve a multitude of functional requirements. 
-Accurate real-time posture tracking is essential for effective application of ergonomic assessment models like RULA. Due to the Teslasuit's use of accelerometers the system also needs to be able to calibrate the sensors to minimize the effect of drift over time. In addition the system needs to correctly place the user in the XR environment and align the real-world coordinates with the XR coordinates. This is necessary to accurately assess the users proximity to hazard zones. For the system to be accesible to workers it also needs to provide a user-friendly interface which allows easy calibration and minimal interaction during tasks. The system also needs to be able to integrate with existing industrial systems like GAIA to leverage existing infrastructure and data. 
--Real-time posture monitoring
--Calibration (because of accelerometer drift)
--Hazard detection in XR environment
--Haptic and visual feedback for unsafe postures and hazards
--Data logging for ergonomic assessment
--User-friendly interface for workers
--Integration with existing industrial systems (GAIA)
+Accurate real-time posture tracking is essential for effective application of ergonomic assessment models like RULA. Due to the Teslasuit's use of accelerometers the system also needs to be able to calibrate the sensors to minimize the effect of drift over time. In addition the system needs to correctly place the user in the XR environment and align the real-world coordinates with the XR coordinates. This is necessary to accurately assess the users proximity to hazard zones. For the system to be accesible to workers it also needs to provide a user-friendly interface which allows easy calibration and minimal interaction during tasks. The system also needs to be able to integrate with existing industrial systems like GAIA to leverage existing infrastructure and data. In order to be able to properly analyze the data the system also needs to log relevant data for later assessment. Finally the system needs to provide haptic and visual feedback to alert workers of unsafe postures and hazards in their environment.
 
 \subsection{Non-functional Requirements}
--Latency 
--Intrusiveness
--Reliability
--Usability
+In order to fulfill its functional requirements the system also needs to meet several non-functional requirements. 
+The system must operate with low latency to ensure timely feedback. It should be reliable, minimizing false positives and ensuring consistent performance in industrial environments. The system should be intuitive and require minimal training for workers to use effectively. Additionally, the system should be non-intrusive, allowing workers to perform their tasks without significant disruption. The system should also be scalable to accommodate different industrial settings and adaptable to various tasks and environments.
+
 \subsection{Hardware and Software Constraints}
--control center only runs on windows so component running windows is required for the teslasuit
--teslasuit not that precise and cant detect whether body part rested on something or not
--battery life of wearables
--xr headset comfort
--stable wireless connection
+The design of the XR-based assistance system is influenced by several hardware and software constraints. 
+Most notably the teslasuit introduces several limitations. In order to transmit data from the teslasuit a software provided by the manufacturer is required. sadly this software only runs on windows which means a device running windows is required for the system. Due to this limitation the software also needs to be distributed between the Meta Quest 3 and a windows PC. Due to the Teslasuit using IMUs for motion tracking the posture detection is subject to drift over time and will need to be calibnrated occasionally. Additionally there is no way for the Teslasuit to detect whether a body part is resting on a surface which rules out certain aspects of ergonomic assessment models like RULA. The battery life of the Teslasuit and Meta Quest 3 also limits the duration of use before recharging is necessary. The comfort of wearing the XR headset for extended periods is another consideration, as discomfort could affect worker compliance. Finally, maintaining a stable wireless connection between the wearable devices and the processing unit is crucial for real-time data transmission and feedback.
 
 \section{Framework Architecture}
--due to the software limitations the Framework is distributed between the Meta Quest 3 and a windows PC which will handle the data and most of the computation
+Due to the software limitations the Framework is distributed between the Meta Quest 3 and a windows PC which will handle the data and most of the computation. Which has the advantage of allowing the use of more powerful hardware for data processing. Due to this the Meta Quest 3 will primarily handle XR rendering and user interaction resulting in lower latency and higher frame rates. The Windows PC will handle data acquisition from the Teslasuit, posture analysis, hazard detection, and integration with industrial systems like GAIA. The two devices will communicate via Unity's native networking capabilities. This architecture allows for efficient distribution of tasks while leveraging the strengths of each device.
+
 \subsection{Hardware Components}
+
 -Meta Quest 3
 -Teslasuit
 -Windows PC
 -GAIA system
 -potential addtional sensors (smart watch etc)
 \subsection{Data Flow and Integration via LSL}
+-explain why LSL is used (low-latency, open-source, widely adopted in research, easy integration with Unity, easy to use with multiple data streams, supports wide range of devices)
 -synchronization of data streams from Teslasuit and Meta Quest 3 
 -collection of motion and biometric data from Teslasuit
 -integration of tracking and XR scene information from Meta Quest 3
@@ -57,15 +49,14 @@ Accurate real-time posture tracking is essential for effective application of er
 -preprocessing: smoothing, filtering to reduce noise
 -mapping raw sensor data into ergonomic posture models
 \subsection{Ergonomic Assessment Model}
--application of simplified RULA scoring
--calculation of part scores (arms, wrists, neck, trunk, legs)
--aggregation into overall ergonomic risk levels
--real-time thresholding to trigger feedback events
-\subsection{Mapping to Ergonomic Risk Levels}
--Low Risk: No action needed
--Medium Risk: Subtle corrective feedback (haptic, visual)
--High Risk: Strong alert to prompt immediate correction
--Continuous logging for ergonomic analysis and training
+To assess the ergonomic risk of the user's posture the System uses a simplified version of RULA where limbs and the torso will be scored individually to apply localized feedback. The ergonomic risk will also be aggregated into an overall score to provide a general overview of the user's posture. The ergonomic assessment will be performed at regular intervals to provide timely feedback without overwhelming the user.
+For the purpose of providing feedback to the user the ergonomic risk levels are mapped into three categories:
+\begin{itemize}
+    \item Low Risk: No action needed
+    \item Medium Risk: Subtle corrective feedback (haptic, visual)
+    \item High Risk: Strong alert to prompt immediate correction
+\end{itemize}
+Additionally the scores will be continuously logged for later analysis.
 
 \section{Hazard Detection Concept}
 -Using XR environment to define and visualize danger zones
