@@ -24,12 +24,8 @@ Most notably the teslasuit introduces several limitations. In order to transmit 
 Due to the software limitations the Framework is distributed between the Meta Quest 3 and a windows PC which will handle the data and most of the computation. Which has the advantage of allowing the use of more powerful hardware for data processing. Due to this the Meta Quest 3 will primarily handle XR rendering and user interaction resulting in lower latency and higher frame rates. The Windows PC will handle data acquisition from the Teslasuit, posture analysis, hazard detection, and integration with industrial systems like GAIA. The two devices will communicate via Unity's native networking capabilities. This architecture allows for efficient distribution of tasks while leveraging the strengths of each device.
 
 \subsection{Hardware Components}
+The XR-based assistance system requires serveral hardware components to function effectively. First and foremost the XR-based assistance system requires an XR headset to provide the spatial tracking and visual feedback. The Meta Quest 3 is chosen for its low cost, standalone capabilities, spatial tracking features and widespread adoption. The Teslasuit is used for posture tracking and biometric data collection due to its comprehensive sensor suite and haptic feedback capabilities. A Windows PC is necessary to run the Teslasuit software and handle data processing tasks that exceed the capabilities of the Meta Quest 3. Additionally the system will integrate with existing industrial systems like GAIA to leverage existing infrastructure and data. Optionally additional sensors like smart watches can be integrated to provide supplementary biometric data.
 
--Meta Quest 3
--Teslasuit
--Windows PC
--GAIA system
--potential addtional sensors (smart watch etc)
 \subsection{Data Flow and Integration via LSL}
 -explain why LSL is used (low-latency, open-source, widely adopted in research, easy integration with Unity, easy to use with multiple data streams, supports wide range of devices)
 -synchronization of data streams from Teslasuit and Meta Quest 3 
@@ -117,7 +113,9 @@ Additionally the scores will be continuously logged for later analysis.
 
 
 \section{Conceptual Evaluation Criteria}
+In order to evaluate the effectiveness of the conceptual design, several criteria are established. These criteria focus on the system's ability to meet functional and non-functional requirements, as well as its overall usability and integration capabilities.
 \subsection{Relation to Research Questions}
+
 -Posture monitoring accuracy
 -Hazard detection reliability
 -Latency thresholds
