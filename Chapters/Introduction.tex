@@ -1,45 +1,17 @@
 \chapter{Introduction}
-In modern industrial environments, ensuring the safety and well-being of workers is
-an increasingly complex challenge. This is due to the rise in automation of factories,
-which has led to workers being exposed to a range of risks from moving parts to robots.
-Traditional safety measures (e.g., warning signs, training programs) are often static and
-thus insufficient for modern dynamic workspaces \cite{robb2019vrtraining}. They do not
-adapt to the real-time context of the worker, leading to potential oversights.
+In modern industrial environments, ensuring the safety and well-being of workers is an increasingly complex challenge. This is due to the rise in automation of factories, which has led to workers being exposed to a range of risks from moving parts to robots. Traditional safety measures like warning signs, floor markings, and standard training provide a necessary foundation, but they are not always sufficient. In many cases, these static systems fail to reach workers at the right moment, especially when attention is focused elsewhere or hazards change rapidly. These systems require real-time adaptation and individualization.
 
-Consider a typical workstation on an assembly line: a robotic arm picks components
-from a moving conveyor and places them onto a workbench, where a human operator
-performs detailed finishing tasks. The process is fast-paced, and both the worker and
-the robot operate in close proximity. A moment of inattention could result in the worker
-reaching into the robot’s operational area, or adopting a strained posture while handling a
-part, creating risks of both acute injury and long-term musculoskeletal strain \cite{punnett2004wrmsd}.
-Traditional safety would not be able to provide the necessary real-time feedback to prevent such
-incidents since they rely on the worker’s ability to notice and process external warnings
-while engaged in their primary tasks.
+To protect workers more effectively, safety solutions must become adaptive, personalized, and accessible. They must understand the individual context of the worker: how they move, where they are in the environment, and when they may be at risk, whether from poor posture, fatigue, or close proximity to danger zones.
 
-To address these shortcomings, a new approach that leverages real-time data and im-
-mersive technologies can provide more effective assistance. By integrating real-time
-physiological and spatial data with immersive and haptic feedback, it is possible to create
-a system that enhances worker safety in dynamic environments. Such a system can make
-risks visible, posture perceptible, and hazards tangible, thereby supporting workers in
-making safer decisions and maintaining ergonomic practices.
+Advances in extended reality (XR) and wearable technology, such as full-body haptic suits and immersive head-mounted displays, are opening new avenues for real-time assistance and feedback systems. These technologies are no longer confined to research labs or entertainment industries but are being increasingly considered for applications in healthcare, rehabilitation, training, and industrial safety. In this context, integrating real-time physiological and spatial data with immersive and haptic feedback presents a promising opportunity to enhance worker safety in hazardous zones. 
 
-Advances in extended reality (XR) and wearable technology, such as full-body haptic
-suits and immersive head-mounted displays, are opening new possibilities for real-time
-assistance and feedback systems. These technologies are no longer confined to research
-labs or entertainment industries but are being increasingly considered for applications
-in healthcare, rehabilitation, training, and industrial safety \cite{palmarini2018ar}. This increased availability of
-XR and wearable devices presents the opportunity to develop such adaptive assistance
-systems that can provide real-time, personalized feedback to workers.
+Based on the identified challenges and objectives, this thesis investigates the following research questions:
 
-Current approaches at such systems often focus on one mode of feedback, or do not
-provide real-time, personalized assistance, resulting in them not utilizing the full potential
-of XR and wearable technologies. Additionally, systems utilizing only a singular modality
-(e.g., only visual feedback) can lead to information overload through excessive visual
-stimuli, which can distract workers from their primary tasks. By combining multiple
-modalities—such as visual, auditory, and haptic feedback—these systems can provide
-more intuitive and effective warnings that are less likely to be ignored or seem distractive
-\cite{lindeman2004haptic}.
+\begin{enumerate}
+  \item \textbf{RQ1:} How effectively can physiological and postural data from the Teslasuit be used to detect unsafe posture in real time?
+  \item \textbf{RQ2:} What latency thresholds are acceptable for haptic and visual feedback in XR-based industrial safety systems?
+  \item \textbf{RQ3:} How can spatial data from XR devices be aligned with sensor data from wearables to create a reliable danger zone alert system?
+  \item \textbf{RQ4:} How do users perceive the comfort, usability, and intrusiveness of an XR-based safety assistance system during typical industrial tasks?
+\end{enumerate}
 
-
-This thesis presents the design and development of an XR-based assistance framework for industrial workers that integrates real-time physiological and spatial data from wearable sensors with immersive visual and haptic feedback. The system is tailored for dynamic, collaborative work environments, such as assembly lines where humans and robots operate in close proximity, and aims to enhance situational awareness, promote ergonomic posture, and reduce the risk of accidents without disrupting workflow.
-
+This thesis explores how such a system could be designed and deployed. Specifically, it proposes an XR-based assistance framework that helps workers stay safe by making risk visible, posture perceptible, and hazards tangible. By integrating real-time motion, biometric, and positional data, the system aims to provide immediate, personalized support without disrupting the workflow or overwhelming the user. Rather than replacing human judgment, it enhances situational awareness and supports safer, more ergonomic behavior in industrial settings.
