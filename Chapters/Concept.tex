@@ -52,16 +52,20 @@ For the purpose of providing feedback to the user the ergonomic risk levels are 
     \item Medium Risk: Subtle corrective feedback (haptic, visual)
     \item High Risk: Strong alert to prompt immediate correction
 \end{itemize}
-Additionally the scores will be continuously logged for later analysis and statistics.
+Additionally the scores will be continuously logged for later analysis and statistics. 
 \subsection{RULA Scoring Adaptation}
 The scores are determined based on the RULA scoring system as described by McAtamney and Corlett \cite{mcatamney1993rula}. However due to the limitations of the Teslasuit's IMU-based tracking system some adaptations are necessary. 
+The RULA scoring system is divided into two sections with respectively 4 and 3 subcategories corresponding to different body parts. The first section (A) evaluates the upper arm, lower arm, wrist, and wrist twist, while the second section (B) assesses the neck, trunk, and legs. Each body part is assigned a score based on its position and movement, which are then combined to produce an overall risk score. Addtionally muscle use and force/load scores are added to the overall score of both categories. The force score is disregarded in this implementation due to the lack of force sensors in the Teslasuit.
+The wrist twist, wrist position and leg score is also disregarded due to missing sensors needed to determine these scores.
+To account for the lack of these scores they will be assumed to be in a neutral position and assigned the lowest possible score. This means that the overall ergonomic risk may be underestimated, especially in tasks that involve significant wrist movement or leg strain. However, this adaptation allows for a functional ergonomic assessment using the available data from the Teslasuit.
 
 \section{Hazard Detection Concept}
 
 -Using XR environment to define and visualize danger zones
--Integration of real-world data for dynamic hazard detection
+-Integration of real-world data for hazard detection
 
 \subsection{Spatial Alignment of XR and Real-World Coordinates}
+In order to accurately assess the user's proximity to defined hazard zones within the XR environment, precise spatial alignment between the Teslasuit's real-world coordinates and the Meta Quest 3's XR coordinates is essential. This alignment ensures that the system can effectively monitor the user's location relative to virtual representations of hazardous areas.
 - calibration procedure between Teslasuit and Quest 3 spaces
 - use of anchor points (markers or environment geometry)
 
