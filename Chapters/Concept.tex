@@ -60,7 +60,8 @@ The wrist twist, wrist position and leg score is also disregarded due to missing
 To account for the lack of these scores they will be assumed to be in a neutral position and assigned the lowest possible score. This means that the overall ergonomic risk may be underestimated, especially in tasks that involve significant wrist movement or leg strain. However, this adaptation allows for an ergonomic assessment using the available data from the Teslasuit and The Meta Quest 3. Additionally to avoid overwhelming the user with constant feedback, as is one of the stated goals of this system, the assessment should slightly underestimate the risk in some cases rather than overestimate it and cause alert fatigue. 
 
 \section{Hazard Detection Concept}
-The Hazards are defined as a cubical or spherical volume in the XR environment it's position and size can be defined by the user during setup. The current Hazard Level is determined by a preset rule which can use data from a predefined LSL stream. 
+The Hazards are defined as a cubical or spherical volume in the XR environment it's position and size can be defined by the user during setup. The current Hazard Level is determined by a preset rule which can use data from a predefined LSL stream.
+The system continuosly monitors the position of the user and their limbs using the Meta Quest 3 and the Teslasuit. 
 -Using XR environment to define and visualize danger zones
 -Integration of real-world data for hazard detection
 
