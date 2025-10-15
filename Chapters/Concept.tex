@@ -37,13 +37,7 @@ The XR-based assistance system requires serveral hardware components to function
 -Unity native networking for communication between Meta Quest 3 and Windows PC
 
 \section{Posture Analysis Concept}
--Real-time joint angle data acquisition from Teslasuit
--Ergonomic assessment using RULA
-\subsection{Joint Angle Data Acquisition}
--use of Teslasuit IMUs for limb and torso angle detection
--continuous sampling at defined frequency
--preprocessing: smoothing, filtering to reduce noise
--mapping raw sensor data into ergonomic posture models
+The posture analysis component of the XR-based assistance system is designed to monitor and assess the ergonomic risk of the user's posture in real-time. This is achieved through the use of the Teslasuit's IMU sensors to capture angle data for the bodyparts which is then trasnformed into joint angles to be analyzed using a simplified version of the Rapid Upper Limb Assessment (RULA) model. the angles will be continuosly monitored and assessed to provide timely feedback to the user.
 \subsection{Ergonomic Assessment Model}
 To assess the ergonomic risk of the user's posture the System uses a simplified version of RULA where limbs and the torso will be scored individually to apply localized feedback. The ergonomic risk will also be aggregated into an overall score to provide a general overview of the user's posture. The ergonomic assessment will be performed at regular intervals to provide timely feedback without overwhelming the user.
 For the purpose of providing feedback to the user the ergonomic risk levels are mapped into three categories:
@@ -61,81 +55,45 @@ To account for the lack of these scores they will be assumed to be in a neutral 
 
 \section{Hazard Detection Concept}
 The Hazards are defined as a cubical or spherical volume in the XR environment it's position and size can be defined by the user during setup. The current Hazard Level is determined by a preset rule which can use data from a predefined LSL stream.
-The system continuosly monitors the position of the user and their limbs using the Meta Quest 3 and the Teslasuit. 
--Using XR environment to define and visualize danger zones
--Integration of real-world data for hazard detection
-
-\subsection{Spatial Alignment of XR and Real-World Coordinates}
-In order to accurately assess the user's proximity to defined hazard zones within the XR environment, precise spatial alignment between the Teslasuit's real-world coordinates and the Meta Quest 3's XR coordinates is essential. This alignment ensures that the system can effectively monitor the user's location relative to virtual representations of hazardous areas.
-- calibration procedure between Teslasuit and Quest 3 spaces
-- use of anchor points (markers or environment geometry)
-
-\subsection{Definition of Danger Zones}
-- virtual representation of hazardous areas in XR
-- dynamic adjustment based on real-world changes
-- individually placed danger zones for specific tasks
-- visual cues (color coding, flashing) for hazard zones
-- Multi-zone hierarchy (e.g., caution, danger, emergency)
-
-\subsection{Sensor and XR Data Fusion}
-- Combining Teslasuit motion data with XR positional tracking
-- Real-time monitoring of worker proximity to danger zones
-
+Each hazard zone can be individually and manually adjusted if the environment changes.
+The system continuosly monitors the position of the user and their limbs, using the Meta Quest 3 and the Teslasuit, in order to determine their proximity to the defined hazard zones. If the user enters a hazard zone or comes within a predefined distance of it, the system triggers an alert through haptic and/or visual feedback. The hazard detection is performed in real-time to ensure timely alerts and enhance worker safety. 
 
 \section{Feedback Modalities}
-\subsection{Haptic Feedback}
--local cues for posture correction
--intensity scaling depending on urgency
--spatial mapping of cues to body region
-\subsection{Visual Feedback}
-- XR overlays for hazard alerts
-- color-coded indicators for ergonomic status
-- minimalistic design to avoid clutter
+The system employs both haptic and visual feedback to communicate with the users. 
 
-\subsection{Rationale for Feedback Choice}
-Haptic and visual feedback are strategically combined to maximize user awareness and minimize cognitive load. Haptic cues provide immediate, localized alerts without adding to visual clutter. Visual feedback 
--Haptic cues reduce visual overload
--Visual feedback leverages XR capabilities
--Combination enhances situational awareness (SOURCE!!)
+The haptic feedback will be delivered in form of local cues for posture correction and hazard proximity with intensity scaling depending on urgency. This localized approach ensures that the user can intuitively understand which part of their body requires attention, enhancing the effectiveness of the feedback. Haptic feedback is prioritized due to its ability to provide immediate cues that contribute little to cognitive load except for immediate or high hazard scenarios. 
+
+
+Visual feedback will be provided through the XR headset, utilizing non-intrusive overlays and indicators to alert users of hazards and ergonomic issues. The visual feedback is designed to complement the haptic cues, providing additional context without overwhelming the user. Visual feedback will primarily be used for hazard alerts, leveraging the XR environment's capabilities to highlight danger zones and provide spatial awareness. While also providing subtle visual cues for posture correction on longer or repeated poor posture. The visual feedback is designed to be minimalisitc and will be color coded to indicate the severity of the alert.
 
 \section{Interaction Design}
--Aside from setup and calibration the system should require minimal interaction from the worker
--The system should provide clear and concise feedback without overwhelming the worker
-- The system should be non-intrusive when no hazards or poor posture is detected
-\subsection{Worker Interaction with the System}
--Calibration at start of shift
--Minimal interaction during tasks
--Option to acknowledge alerts
+The interaction design is focused on ensuring that the system requires minimal input from the user, while still providing accruate and effective feedback. The system is designed to be as non-intrusive as possible, allowing workers to focus on their tasks without being overwhelmed by alerts or notifications. Aside from the initial setup and calibration, the system operates without additional user input aside from periodic recalibration of the Teslasuit. The user interface is designed to be intuitive and easy to navigate, allowing users to autonomously setup and adjust the system as needed.
+
+
 
 \subsection{Avoiding Information Overload}
--Prioritization of Alerts
--Haptic vs Visual Feedback
--low intensity haptic feedback for posture correction
--stronger haptic feedback for hazard alerts
--visual feedback for immediate/ dangerous hazard alerts
--adaptive alert frequency 
--personalization of feedback intensity
+An important aspect of the interaction design is avoiding information overload. There are several strategies implemented to achieve this. Firstly the system categorizes alerts into low, medium, and high priority levels. Low priority alerts are subtle and non-intrusive by triggering only localized low intensity haptic feedback. Medium priority alerts are more noticeable by triggering higher intensity haptic feed and visual cues in case of proximity to hazard zones. High priority alerts are designed to be as intrusive as necessary to ensure immediate attention, employing strong haptic feedback and prominent visual warnings. When multiple alerts occur simultaneously the system prioritizes them based on severity, ensuring that the most critical information is communicated first.
+ Additionally the system employs adaptive alert frequency, reducing the frequency of alerts during periods of low risk to prevent alert fatigue. Personalization options allow users to adjust the intensity and type of feedback according to their preferences, further enhancing usability. Finally an option to temporarily ignore alerts is provided, allowing users to focus on critical tasks without being distracted by non-urgent notifications this option can also be activated by removing the Meta Quest 3. 
 
 \subsection{Safety-Critical Design Considerations}
--Alerts must not obstruct vision of critical tasks of Components
--Defaults in case of sensor failure
--avoid false positives to avoid alert fatigue
+There are several safety-critical design considerations that need to be considered. Firstly the system needs to offer the user to define zones where no visual alerts should be shown in order to avoid obstructing the vision of critical components such as warning lights or signs. The system also needs to handle sensor failures gracefully by providing default feedback in case of lost tracking or sensor errors. Additionally the system needs to minimize false positives to avoid alert fatigue and ensure that users remain responsive to alerts.
 
 
-\section{Conceptual Evaluation Criteria}
-In order to evaluate the effectiveness of the conceptual design, several criteria are established. These criteria focus on the system's ability to meet functional and non-functional requirements, as well as its overall usability and integration capabilities.
-\subsection{Relation to Research Questions}
+\section{Evaluation Criteria}
+In order to evaluate the effectiveness of the conceptual design, several criteria are established. These criteria focus on the system's ability to meet functional and non-functional requirements, as well as its overall usability and integration capabilities. 
+These criteria include:
+\begin{itemize}
+    \item Posture Detection Accuracy: The system should accurately detect and assess user posture, with a target accuracy of within 5 degrees for joint angles.
+    \item Hazard Detection Reliability: The system should reliably detect proximity to hazard zones, with a low rate of false positives and negatives.
+    \item Latency: The system should operate with low latency, ideally below 200ms, to ensure timely feedback.
+    \item User Experience: The system should be user-friendly, requiring minimal training and allowing for easy calibration and adjustment.
+    \item Integration: The system should seamlessly integrate with existing industrial systems like GAIA, leveraging existing infrastructure and data.
+\end{itemize}
 
+\section{Summary and Transition}
+Research Questions Addressed:
 -Posture monitoring accuracy
 -Hazard detection reliability
 -Latency thresholds
--Spatial alignment 
-
-\subsection{Success Criteria for the Concept}
--Accurate posture detection (within 5 degrees)
--Latency below 200ms
--Integration with existing systems
--Hazard zones correctly represented in XR
-
-\section{Summary and Transition}
+-Spatial alignment
 % Recap of the conceptual design and transition to Implementation.
