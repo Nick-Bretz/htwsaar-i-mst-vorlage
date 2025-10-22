@@ -1,0 +1,116 @@
+\chapter{Implementation}
+
+\section{Overview}
+This chapter describes the practical realization of the XR-based assistance framework introduced in Chapter~4. It details the integration of hardware and software components, the data processing pipeline, posture analysis, hazard detection, and feedback mechanisms. The implementation emphasizes real-time performance, modularity, and synchronization via the LabStreamingLayer (LSL).
+
+\section{System Setup and Environment}
+\subsection{Hardware Configuration}
+\begin{itemize}
+    \item \textbf{Teslasuit:} Full-body haptic and motion capture suit for physiological and kinematic data.
+    \item \textbf{Meta Quest 3:} XR headset used for spatial localization and visual feedback.
+    \item \textbf{Host PC:} Windows-based system running the Teslasuit controller and LSL data server.
+    \item \textbf{Networking:} Local Wi-Fi connection with static IP configuration for Quest–PC communication.
+\end{itemize}
+
+\subsection{Software Components}
+\begin{itemize}
+    \item Unity XR environment with LSL plugin.
+    \item Teslasuit Unity SDK and API for motion and haptic control.
+    \item Python-based data logging and processing layer.
+    \item MQTT broker (optional) for integration with environmental or GAIA data.
+    \item RULA algorithm implementation for ergonomic assessment.
+    \item Custom Unity scripts for data visualization and user interaction.
+\end{itemize}
+
+\subsection{Development Environment}
+\begin{itemize}
+    \item Unity Version, SDK versions, Python version, and libraries.
+    \item Communication architecture diagram (LSL stream definitions, clock synchronization, etc.).
+    \item Version control and collaboration tools used (e.g., Git).
+\end{itemize}
+
+\section{Data Integration and Synchronization}
+\subsection{LabStreamingLayer Implementation}
+Describe:
+\begin{itemize}
+    \item Stream definitions for Teslasuit (motion, biometrics) and Quest (position, rotation).
+    \item Stream naming and channel mapping.
+    \item Time-synchronization strategy and data rate management.
+\end{itemize}
+
+\subsection{Data Logging and Processing Pipeline}
+\begin{itemize}
+    \item Python receiver for stream verification.
+    \item Logging format (CSV, JSON, etc.).
+    \item Handling of missing or delayed samples.
+\end{itemize}
+
+\section{Posture Analysis Module}
+\subsection{Joint Angle Extraction}
+\begin{itemize}
+    \item Calculation of joint angles/orientations from Teslasuit data needed for RULA.
+\end{itemize}
+
+\subsection{RULA-Based Ergonomic Assessment}
+\begin{itemize}
+    \item Simplified RULA implementation (without load/support).
+    \item Scoring logic (angle thresholds $\rightarrow$ risk level).
+    \item Real-time computation and temporal smoothing.
+\end{itemize}
+
+\subsection{Output Integration}
+\begin{itemize}
+    \item Visualization of current posture risk in XR (optional UI overlay).
+\end{itemize}
+
+\section{Hazard Detection Module}
+\subsection{Spatial Calibration}
+\begin{itemize}
+    \item Coordinate alignment between Quest 3 and Teslasuit.
+    \item Calibration routine (e.g., reference pose or fiducial marker alignment).
+\end{itemize}
+
+\subsection{Danger Zone Definition}
+\begin{itemize}
+    \item Zone setup in Unity.
+    \item Trigger colliders representing hazardous areas.
+\end{itemize}
+
+\subsection{Collision Detection and Feedback Trigger}
+\begin{itemize}
+    \item Data fusion between spatial tracking and posture module.
+    \item Threshold-based activation logic.
+\end{itemize}
+
+\section{Feedback System}
+\subsection{Haptic Feedback Implementation}
+\begin{itemize}
+    \item Mapping of body zones to Teslasuit actuators.
+    \item EMS patterns for posture vs. hazard alerts.
+    \item Latency testing setup and results (link to evaluation).
+\end{itemize}
+
+\subsection{Visual Feedback Implementation}
+\begin{itemize}
+    \item Unity overlay design (color-coded warnings, directional cues).
+\end{itemize}
+
+\subsection{Feedback Coordination}
+\begin{itemize}
+    \item Priority handling to avoid overload.
+\end{itemize}
+
+\section{System Evaluation Tools}
+\begin{itemize}
+    \item Logging framework for latency and accuracy testing.
+    \item User study scripts and task definitions (if included).
+    \item Collected metrics: latency, risk detection accuracy, user comfort.
+\end{itemize}
+
+\section{Summary}
+Brief summary connecting the implementation back to research questions:
+\begin{itemize}
+    \item How physiological data enables posture detection.
+    \item How haptic and visual feedback operate together.
+    \item How LSL ensures synchronization and low latency.
+\end{itemize}
