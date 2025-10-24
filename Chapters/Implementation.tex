@@ -9,7 +9,7 @@ This chapter describes the practical realization of the XR-based assistance fram
     \item \textbf{Teslasuit:} Full-body haptic and motion capture suit for physiological and kinematic data.
     \item \textbf{Meta Quest 3:} XR headset used for spatial localization and visual feedback.
     \item \textbf{Host PC:} Windows-based system running the Teslasuit controller and LSL data server.
-    \item \textbf{Networking:} Local Wi-Fi connection with static IP configuration for Quest–PC communication.
+    \item \textbf{Networking:} Local Wi-Fi connection.
 \end{itemize}
 
 \subsection{Software Components}
@@ -52,10 +52,12 @@ Describe:
 \end{itemize}
 
 \subsection{RULA-Based Ergonomic Assessment}
+The RULA algorithm was implemented directly in Unity via C# scripts. It uses data provided by the Teslasuit Plugin transfered to a skeleton model in Unity. As the skeleton doesn't provide joint angle data directly, these angles were calculated based on the rotation data of the relevant bones. The script processes the required joint angles (e.g., projecting the upper arm angle onto a plane defined by the shoulder orientation) to compute the RULA score in real-time. 
 \begin{itemize}
     \item Simplified RULA implementation (without load/support).
     \item Scoring logic (angle thresholds $\rightarrow$ risk level).
     \item Real-time computation and temporal smoothing.
+    \item Add pictures of the skeleton model with relevant angles highlighted.
 \end{itemize}
 
 \subsection{Output Integration}
